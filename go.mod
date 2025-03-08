@@ -1,3 +1,3 @@
-module github.com/username/batch-rename
+module github.com/TheSETJ/mass-rename
 
 go 1.21.0
