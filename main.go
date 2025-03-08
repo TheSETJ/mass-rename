@@ -48,14 +48,17 @@ func main() {
 			continue
 		}
 
-		fileName := file.Name()
+		oldFileName := file.Name()
+		oldPath := filepath.Join(*dirPath, oldFileName)
+
 		fileExt := filepath.Ext(file.Name())
-		oldPath := filepath.Join(*dirPath, fileName)
-		newPath := *prefix + strings.TrimSuffix(fileName, fileExt) + *suffix + fileExt
+
+		newFileName := *prefix + strings.TrimSuffix(oldFileName, fileExt) + *suffix + fileExt
+		newPath := filepath.Join(*dirPath, newFileName)
 
 		err = os.Rename(oldPath, newPath)
 		if err != nil {
-			displayError(fmt.Sprintf("Error renaming file %s: %v", fileName, err))
+			displayError(fmt.Sprintf("Error renaming file %s: %v", oldPath, err))
 			continue
 		}
 	}
