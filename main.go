@@ -61,6 +61,8 @@ func main() {
 			displayError(fmt.Sprintf("Error renaming file %s: %v", oldPath, err))
 			continue
 		}
+
+		fmt.Printf("Renamed %s to %s\n", oldPath, newPath)
 	}
 }
 
