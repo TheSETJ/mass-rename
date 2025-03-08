@@ -9,6 +9,15 @@ import (
 )
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage: %s [options]\n\n", os.Args[0])
+		fmt.Fprintln(os.Stderr, "Options:")
+		flag.PrintDefaults()
+		fmt.Fprintln(os.Stderr, "\nExamples:")
+		fmt.Fprintln(os.Stderr, "  mass-rename --prefix new_\t# Prepends \"new_\" to all file names")
+		fmt.Fprintln(os.Stderr, "  mass-rename --suffix _backup\t# Appends \"_backup\" to all file names")
+	}
+
 	dirPath := flag.String("dir", ".", "Directory to rename files in")
 	prefix := flag.String("prefix", "", "Prefix to add to file names")
 	suffix := flag.String("suffix", "", "Suffix to add to file names")
